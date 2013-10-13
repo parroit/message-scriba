@@ -8,4 +8,4 @@ before_script:
   - mkdir storage/attachments
   - chmod 777 storage/attachments
 after_script:
-  - ls -l storage/attachments
+  - ls -l storage
