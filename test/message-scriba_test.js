@@ -20,6 +20,7 @@ describe('messageParser',function(){
     it("will be damned hard!",function(){
         var fs = require("fs");
         fs.writeFileSync("./doh","ciao");
+        console.log(fs.readFileSync("./doh","utf8"));
     });
     /*describe("module",function() {
         it("should load",function(){
