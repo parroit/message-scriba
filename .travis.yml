@@ -7,3 +7,5 @@ before_script:
   - chmod 777 storage
   - mkdir storage/attachments
   - chmod 777 storage/attachments
+after_script:
+  - ls -l storage/attachments
