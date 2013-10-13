@@ -3,9 +3,6 @@ node_js:
   - '0.10'
 before_script:
   - npm install -g grunt-cli
-  - mkdir storage
-  - chmod 777 storage
-  - mkdir storage/attachments
-  - chmod 777 storage/attachments
+
 after_script:
   - ls -l storage
