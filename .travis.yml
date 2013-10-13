@@ -4,6 +4,6 @@ node_js:
 before_script:
   - npm install -g grunt-cli
   - mkdir storage
+  - chmod 777 storage
   - mkdir storage/attachments
-  - whoami
-  - ls -l storage
+  - chmod 777 storage/attachments
