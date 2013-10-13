@@ -97,14 +97,32 @@ describe('messageParser', function () {
          var expectedPath = path.join("storage","attachments");
          var fs = require("fs");
          if (fs.existsSync(expectedPath))
-         rimraf.sync(expectedPath);
+            rimraf.sync(expectedPath);
 
          expect(fs.existsSync(expectedPath)).to.be.false;
 
          var sc = new Scriba();
-         sc.run(path.join('storage','mail.db'),path.join('storage','attachments'));
-         sc.stop();
-         expect(fs.existsSync(expectedPath)).to.be.true;
+         sc.run(path.join('storage','mail1.db'),path.join('storage','attachments'));
+        sc.stop();
+        expect(fs.existsSync(expectedPath)).to.be.true;
+    });
+
+    it("should create database if nonexistent", function (done) {
+        var expectedPath = path.join('storage','mail.db');
+        var fs = require("fs");
+        if (fs.existsSync(expectedPath))
+            fs.unlinkSync(expectedPath);
+
+        expect(fs.existsSync(expectedPath)).to.be.false;
+
+        var sc = new Scriba();
+        var attachmentsPath = path.join('storage', 'attachments');
+        sc.run(expectedPath, attachmentsPath,function(){
+            sc.stop();
+            expect(fs.existsSync(expectedPath)).to.be.true;
+            done();
+        });
+
     });
 
 
