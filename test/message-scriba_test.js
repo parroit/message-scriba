@@ -133,8 +133,9 @@ describe('messageParser',function(){
 
             expect(path).to.be.equal(expectedPath);
 
-            expect(fs.existsSync(path)).to.be.true;
+
             try {
+                expect(fs.existsSync(path)).to.be.true;
                 var file = fs.readFileSync(path,'utf8');
                 expect(file).to.be.equal("this is a test");
             } catch (err) {
