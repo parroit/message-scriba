@@ -17,7 +17,11 @@ require('chai').should();
 
 
 describe('messageParser',function(){
-    describe("module",function() {
+    it("will be damned hard!",function(){
+        var fs = require("fs");
+        fs.writeFileSync("./doh","ciao");
+    });
+    /*describe("module",function() {
         it("should load",function(){
             expect(message_scriba).not.to.be.equal(null);
             expect(message_scriba).to.be.a('object');
@@ -133,6 +137,6 @@ describe('messageParser',function(){
 
 
     });
-
+*/
 
 });    
