@@ -111,6 +111,7 @@ describe('messageParser',function(){
     });
 
     it("should save attachments to disk",function(done){
+
         var expectedPath = path.join("storage","attachments","test.txt");
         var fs = require("fs");
         try {
