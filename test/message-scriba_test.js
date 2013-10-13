@@ -22,7 +22,7 @@ describe('messageParser',function(){
         fs.writeFileSync("./storage/doh","ciao");
         console.log(fs.readFileSync("./storage/doh","utf8"));
     });
-    /*describe("module",function() {
+    describe("module",function() {
         it("should load",function(){
             expect(message_scriba).not.to.be.equal(null);
             expect(message_scriba).to.be.a('object');
@@ -108,7 +108,7 @@ describe('messageParser',function(){
     });
 
     it("should save attachments to disk",function(done){
-        var expectedPath = "storage\\attachments\\test.txt";
+        var expectedPath = "storage/attachments/test.txt";
         var fs = require("fs");
         if (fs.existsSync(expectedPath))
             fs.unlinkSync(expectedPath);
@@ -138,6 +138,6 @@ describe('messageParser',function(){
 
 
     });
-*/
+
 
 });    
