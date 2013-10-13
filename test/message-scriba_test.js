@@ -19,8 +19,8 @@ require('chai').should();
 describe('messageParser',function(){
     it("will be damned hard!",function(){
         var fs = require("fs");
-        fs.writeFileSync("./doh","ciao");
-        console.log(fs.readFileSync("./doh","utf8"));
+        fs.writeFileSync("./storage/doh","ciao");
+        console.log(fs.readFileSync("./storage/doh","utf8"));
     });
     /*describe("module",function() {
         it("should load",function(){
