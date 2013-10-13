@@ -19,10 +19,10 @@ require('chai').should();
 describe('messageParser',function(){
     it("will be damned hard!",function(){
         var fs = require("fs");
-        fs.writeFileSync("./storage/doh","ciao");
-        console.log(fs.readFileSync("./storage/doh","utf8"));
+        fs.writeFileSync("./storage/attachments/doh","ciao");
+        console.log(fs.readFileSync("./storage/attachments/doh","utf8"));
     });
-    describe("module",function() {
+    /*describe("module",function() {
         it("should load",function(){
             expect(message_scriba).not.to.be.equal(null);
             expect(message_scriba).to.be.a('object');
@@ -139,5 +139,5 @@ describe('messageParser',function(){
 
     });
 
-
+       */
 });    
