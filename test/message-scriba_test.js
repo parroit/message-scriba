@@ -20,11 +20,6 @@ require('chai').should();
 
 
 describe('messageParser', function () {
-    it("will be damned hard!", function () {
-        var fs = require("fs");
-        fs.writeFileSync("storage/attachments/doh", "ciao");
-        console.log(fs.readFileSync("storage/attachments/doh", "utf8"));
-    });
     describe("module", function () {
         it("should load", function () {
             expect(message_scriba).not.to.be.equal(null);
@@ -108,8 +103,38 @@ describe('messageParser', function () {
 
          var sc = new Scriba();
          sc.run(path.join('storage','mail.db'),path.join('storage','attachments'));
-
+         sc.stop();
          expect(fs.existsSync(expectedPath)).to.be.true;
+    });
+
+
+
+    it("should stop listening on stop", function (done) {
+        var sc = new Scriba();
+        sc.run(path.join('storage','mail.db'),path.join('storage','attachments'));
+        sc.stop();
+        var bus = require("corriera");
+
+        var listenerCalled = false;
+        var listener = function () {
+            listenerCalled=true;
+        };
+
+        bus.once('attachmentSaved', /(.*)/, listener);
+
+        setTimeout(function(){
+            expect(listenerCalled).to.be.false;
+            bus.removeListener('messageParsed', listener);
+            done();
+        },30);
+
+        var fs = require("fs");
+        bus.emit(
+            'attachmentParsing',
+            'any',
+            fs.createReadStream(path.join('test', 'test.txt')),
+            "test.txt"
+        );
     });
 
     it("should save attachments to disk", function (done) {
@@ -137,7 +162,7 @@ describe('messageParser', function () {
             var file = fs.readFileSync(path, 'utf8');
             expect(file).to.be.equal("this is a test");
 
-
+            sc.stop();
             done();
         });
 
