@@ -1,4 +1,4 @@
-# message-scriba [![Build Status](https://secure.travis-ci.org/parroit/message-scriba.png?branch=master)](http://travis-ci.org/parroit/message-scriba)
+# message-scriba [![Build Status](https://secure.travis-ci.org/parroit/message-scriba.png?branch=master)](http://travis-ci.org/parroit/message-scriba) [![Npm module](https://badge.fury.io/js/message-scriba.png)](https://npmjs.org/package/message-scriba)
 
 listen for parsed message on corriera and save them to db
 
