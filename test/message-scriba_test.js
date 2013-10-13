@@ -89,7 +89,7 @@ describe('messageParser',function(){
 
     var rimraf=require("rimraf");
     it("should create attachments folder if nonexistent",function(){
-        var expectedPath = "../storage/attachments";
+        var expectedPath = "./storage/attachments";
         var fs = require("fs");
         if (fs.existsSync(expectedPath))
             rimraf.sync(expectedPath);
@@ -97,19 +97,19 @@ describe('messageParser',function(){
         expect(fs.existsSync(expectedPath)).to.be.false;
 
         var sc = new Scriba();
-        sc.run('../storage/mail.db','../storage/attachments');
+        sc.run('./storage/mail.db','./storage/attachments');
 
         expect(fs.existsSync(expectedPath)).to.be.true;
     });
 
     it("should save attachments to disk",function(done){
-        var expectedPath = "..\\storage\\attachments\\test.txt";
+        var expectedPath = "storage\\attachments\\test.txt";
         var fs = require("fs");
         if (fs.existsSync(expectedPath))
             fs.unlinkSync(expectedPath);
 
         var sc = new Scriba();
-        sc.run('../storage/mail.db','../storage/attachments');
+        sc.run('./storage/mail.db','./storage/attachments');
 
 
         var bus = require("corriera");
