@@ -113,8 +113,12 @@ describe('messageParser',function(){
     it("should save attachments to disk",function(done){
         var expectedPath = path.join("storage","attachments","test.txt");
         var fs = require("fs");
-        if (fs.existsSync(expectedPath))
-            fs.unlinkSync(expectedPath);
+        try {
+            if (fs.existsSync(expectedPath))
+                fs.unlinkSync(expectedPath);
+        } catch (err) {
+            console.log("UNLINK:"+err);
+        }
 
         var sc = new Scriba();
         sc.run(path.join('storage','mail.db'),path.join('storage','attachments'));
