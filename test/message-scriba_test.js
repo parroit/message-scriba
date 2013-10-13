@@ -86,4 +86,53 @@ describe('messageParser',function(){
         }).should.throw(Error);
 
     });
+
+    var rimraf=require("rimraf");
+    it("should create attachments folder if nonexistent",function(){
+        var expectedPath = "./storage/attachments";
+        var fs = require("fs");
+        if (fs.existsSync(expectedPath))
+            rimraf.sync(expectedPath);
+
+        expect(fs.existsSync(expectedPath)).to.be.false;
+
+        var sc = new Scriba();
+        sc.run('./storage/mail.db','./storage/attachments');
+
+        expect(fs.existsSync(expectedPath)).to.be.true;
+    });
+
+    it("should save attachments to disk",function(done){
+        var expectedPath = "storage\\attachments\\test.txt";
+        var fs = require("fs");
+        if (fs.existsSync(expectedPath))
+            fs.unlinkSync(expectedPath);
+
+        var sc = new Scriba();
+        sc.run('./storage/mail.db','./storage/attachments');
+
+
+        var bus = require("corriera");
+
+
+
+        bus.once('attachmentSaved', /(.*)/, function(path){
+
+            expect(path).to.be.equal(expectedPath);
+            var file = fs.readFileSync(path,'utf8');
+            expect(file).to.be.equal("this is a test");
+            done();
+        });
+
+        bus.emit(
+            'attachmentParsing',
+            'any',
+            fs.createReadStream('./test/test.txt'),
+            "test.txt"
+        );
+
+
+    });
+
+
 });    

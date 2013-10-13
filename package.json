@@ -37,6 +37,8 @@
   "keywords": [],
   "dependencies": {
     "nstore": "~0.5.2",
-    "corriera": "~0.1.2"
+    "corriera": "~0.1.2",
+    "mkdirp": "~0.3.5",
+    "rimraf": "~2.2.2"
   }
 }
